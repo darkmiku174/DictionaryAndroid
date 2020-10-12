@@ -26,3 +26,4 @@
             android:title="Message" />
     </group>
 </menu>
+<!--drawer_menu.xml tạo ra để thêm các item (or chức năng) vào navigation view-->

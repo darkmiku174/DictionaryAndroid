@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="176dp"
     android:background="@color/colorAccent"
-    android:gravity="bottom"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
@@ -19,5 +19,6 @@
         android:paddingTop="8dp"
         android:text="GO PRO IT"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-    //căn đều với image view
 </LinearLayout>
+    <!--nav_header.xml tạo ra header của navigation view (phần chứa logo nhóm)-->
+    <!--@style/TextAppearance.AppCompat.Body1 để cân bằng size chữ, có thể sử dụng TextSize -->

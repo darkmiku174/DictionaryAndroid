@@ -2,40 +2,43 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:context="com.example.tudien.MainActivity"
     tools:openDrawer="start">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <androidx.appcompat.widget.Toolbar
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:id="@+id/toolbar"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:elevation="4dp"/>
-    <!--Theme style: Đổi màu text của action bar thành white(bỏ ".Dark" thì text thành màu đen)-->
-    <!--"?Attr/actionBarSize" đổi size lại vừa đúng với 1 toolbar tiêu chuẩn-->
-    <!--Elevation: tạo shadow dưới action bar-->
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        <!--Theme style: Đổi màu text của action bar thành white(bỏ ".Dark" thì text thành màu đen)-->
+        <!--"?Attr/actionBarSize" đổi size lại vừa đúng với 1 toolbar tiêu chuẩn-->
+        <!--Elevation: tạo shadow dưới action bar-->
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:id="@+id/nav_view"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu"/>
-    <!--headerlayout: nhúng nav_header vào navigation drawer-->
-    <!--menu: nhúng drawer_menu vào navigation drawer-->
-
+        app:menu="@menu/drawer_menu" />
+    <!--app:headerlayout: nhúng nav_header vào navigation drawer-->
+    <!--app:menu: nhúng drawer_menu vào navigation drawer-->
+    <!--com.google.android.material.navigation.NavigationView:  tạo 1 Navigation View để nhúng menu,header vào-->
+<!--android:fitsSystemWindows="true" auto điểu chỉnh padding của View đó theo thứ tự chiều sâu-->
 </androidx.drawerlayout.widget.DrawerLayout>
