@@ -13,7 +13,7 @@
             android:icon="@drawable/ic_sampl"
             android:title="Message" />
         <item
-            android:id="@+id/nav_VNtoEn"
+            android:id="@+id/nav_VNtoEN"
             android:icon="@drawable/ic_sampl"
             android:title="Message" />
         <item

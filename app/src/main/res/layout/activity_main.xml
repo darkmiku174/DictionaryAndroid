@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -25,6 +24,14 @@
         <!--Theme style: Đổi màu text của action bar thành white(bỏ ".Dark" thì text thành màu đen)-->
         <!--"?Attr/actionBarSize" đổi size lại vừa đúng với 1 toolbar tiêu chuẩn-->
         <!--Elevation: tạo shadow dưới action bar-->
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/list_view"
+            android:dividerHeight="2dp"
+            android:divider="@android:color/white"
+            tools:listitem="@android:layout/simple_dropdown_item_1line"/>
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
@@ -37,6 +44,7 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu" />
+
     <!--app:headerlayout: nhúng nav_header vào navigation drawer-->
     <!--app:menu: nhúng drawer_menu vào navigation drawer-->
     <!--com.google.android.material.navigation.NavigationView:  tạo 1 Navigation View để nhúng menu,header vào-->
