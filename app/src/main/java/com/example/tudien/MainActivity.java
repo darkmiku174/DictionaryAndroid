@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), adapter.getItem(position), Toast.LENGTH_LONG).show();
             }
-        }); tạo sự kiên cho các item trong listview*/
+        }); */
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -62,8 +62,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //ActionBarDrawerToggle cần phải khởi tạo 2 biến string trong "res->values->strings.xm để sử sử dụng 2 giá trị này như 1 kiểu input
         //ActionBarDrawerToggle(context, drawer layout variable, toolbar variable,string 1 variable, string 2 variable)
         drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        //đéo hiểu cho lắm
+        toggle.syncState(); //xem lại
+
+        if(savedInstanceState==null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new EnEnFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_ENEN); //xem lại phần này,Navigation Drawer with fragment
+        }
     }
 
     @Override
