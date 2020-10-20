@@ -6,9 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.tudien.MainActivity"
-    tools:openDrawer="start">
-
+    tools:context="com.example.tudien.MainActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,14 +22,6 @@
         <!--Theme style: Đổi màu text của action bar thành white(bỏ ".Dark" thì text thành màu đen)-->
         <!--"?Attr/actionBarSize" đổi size lại vừa đúng với 1 toolbar tiêu chuẩn-->
         <!--Elevation: tạo shadow dưới action bar-->
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/list_view"
-            android:dividerHeight="2dp"
-            android:divider="@android:color/white"
-            tools:listitem="@android:layout/simple_dropdown_item_1line"/>
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"

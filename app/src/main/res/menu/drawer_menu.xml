@@ -7,23 +7,23 @@
         <item
             android:id="@+id/nav_ENEN"
             android:icon="@drawable/ic_sampl"
-            android:title="Message" />
+            android:title="English to English" />
         <item
             android:id="@+id/nav_ENtoVN"
             android:icon="@drawable/ic_sampl"
-            android:title="Message" />
+            android:title="English to VietNam" />
         <item
             android:id="@+id/nav_VNtoEN"
             android:icon="@drawable/ic_sampl"
-            android:title="Message" />
+            android:title="VietNam to EngLish" />
         <item
             android:id="@+id/nav_IrrVerb"
             android:icon="@drawable/ic_sampl"
-            android:title="Message" />
+            android:title="Irregular Verbs" />
         <item
             android:id="@+id/nav_FavWord"
             android:icon="@drawable/ic_sampl"
-            android:title="Message" />
+            android:title="Favortie Words" />
     </group>
 </menu>
 <!--drawer_menu.xml tạo ra để thêm các item (or chức năng) vào navigation view-->
