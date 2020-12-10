@@ -5,37 +5,38 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
-import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.view.Window;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
-    private DrawerLayout drawer;                                                                    //tạo 1 biến thành viên cho Drawer Layout
+
+    private DrawerLayout drawer;
     NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);                                                //Khai báo mình sử dụng Toolbar as Actionbar
-        setSupportActionBar(toolbar);                                                                //set Toolbar thành Actionbar (có thể đặt tên, đặt option menu vào toolbar)
-
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);         //xem lại
         navigationView.setNavigationItemSelectedListener(this);
@@ -44,7 +45,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
         drawer.addDrawerListener(toggle);
-        toggle.syncState(); //xem lại
+        toggle.syncState();
+        navigationView.setItemIconTintList(null);
+
 
     }
     //ActionBarDrawerToggle dùng để tạo nút "burger icon"
@@ -71,31 +74,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new FavWordFragment()).addToBackStack(null).commit();
                 break;
+            case R.id.nav_IrrVerb:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new IrrVerbFragment()).addToBackStack(null).commit();
+                break;
+            case R.id.nav_Home:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new HomeFragment()).addToBackStack(null).commit();
+
         }
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
     @Override
-    public void onBackPressed()                                                                      //hàm tạo ra khi nhấn Back: màng hình chỉ tắt Navagation Drawer,View chứ ko tắt Activity
+    public void onBackPressed()                                                                      //hàm tạo ra khi nhấn Back: màng hình chỉ tắt Navagation Drawer, ko tắt Activity
     {
         FragmentManager manager = getSupportFragmentManager();
         if (drawer.isDrawerOpen(GravityCompat.START))                                                //START = bên trái màng hình
         {
             drawer.closeDrawer(GravityCompat.START);
-        } else //else đóng app như bình thường
+        } else
         {
             super.onBackPressed();
         }
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_search, menu);
 
-        return true;
-    }
+
 }
-//https://viblo.asia/p/translation-cac-khai-niem-co-ban-ve-fragment-trong-android-phan-2-GrLZDAQwlk0
-//https://viblo.asia/p/fragment-va-co-che-backstack-va-su-dung-fragment-hieu-qua-nhat-p1-1Je5EMmG5nL
-//developer.android.com/training/search/setup#:~:text=To%20add%20a%20SearchView%20widget,the%20title%20of%20the%20item

@@ -2,13 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
-
+    android:background="@android:color/background_light"
+    android:orientation="vertical">
     <TextView
-        android:id="@+id/tv_vntoen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Vn to En" />
+        android:text="Home"
+        android:textSize="12sp"
+        android:layout_centerInParent="true"/>
+
 </RelativeLayout>
 <!--tạo layout cho sự kiến click các fragment (chức năng) trên drawer navigation-->
 <!--cần thêm 4 cái -->

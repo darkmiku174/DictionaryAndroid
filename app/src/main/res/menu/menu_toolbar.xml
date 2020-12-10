@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<item
+    android:id="@+id/action_search"
+    android:title="Search"
+    app:showAsAction="always|collapseActionView"
+    android:icon="@drawable/ic_search"
+    app:actionViewClass="androidx.appcompat.widget.SearchView" />
+    <item
+        android:id="@+id/action_record"
+        android:title="Voice record"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_micro" />
+    <item
+        android:id="@+id/action_favorite"
+        android:title="Save word"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_star" />
+</menu>
+<!--tạo menu cho searchview-->
+<!--dự tính để listview trên main activity như prodict nên có thể bỏ 1 số .xml-->

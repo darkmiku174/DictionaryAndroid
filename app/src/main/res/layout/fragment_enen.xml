@@ -3,14 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
-    android:orientation="vertical"
-    android:id="@+id/search_view">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
-    <ListView
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_entoen"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:text="EN TO EN"
+        android:textSize="12sp"
+        android:layout_centerInParent="true"/>
+
 </RelativeLayout>
 <!--tạo layout cho sự kiến click các fragment (chức năng) trên drawer navigation-->
 <!--cần thêm 4 cái -->

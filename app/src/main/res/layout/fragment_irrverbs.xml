@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <TextView
-        android:id="@+id/tv_vntoen"
+    <GridView
+        android:id="@+id/gv_irrverb"
+        android:numColumns="3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Vn to En" />
+        android:layout_height="match_parent" />
 </RelativeLayout>
 <!--tạo layout cho sự kiến click các fragment (chức năng) trên drawer navigation-->
 <!--cần thêm 4 cái -->

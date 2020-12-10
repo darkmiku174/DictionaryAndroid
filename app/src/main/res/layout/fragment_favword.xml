@@ -2,14 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_light"
-    android:id="@+id/search_view">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="FAVORITE WORDS"
-    android:textSize="30sp"
-    android:layout_centerInParent="true"/>
+    android:background="@android:color/white">
+    <ListView
+        android:id="@+id/lv_favword"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </RelativeLayout>
-<!--tạo layout cho sự kiến click các fragment (chức năng) trên drawer navigation-->
-<!--cần thêm 4 cái -->

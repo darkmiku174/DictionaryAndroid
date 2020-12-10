@@ -2,23 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="176dp"
-    android:background="@color/colorAccent"
+    android:background="@color/bright_red"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/ic_sampl" />
-
+        android:layout_width="109dp"
+        android:layout_height="112dp"
+        android:background="@drawable/ic_logo" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:text="GO PRO IT"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:text="G5 DICTIONARY"
+        android:textColor="@color/white"/>
+
+
 </LinearLayout>
     <!--nav_header.xml tạo ra header của navigation view (phần chứa logo nhóm)-->
     <!--@style/TextAppearance.AppCompat.Body1 để cân bằng size chữ, có thể sử dụng TextSize -->
