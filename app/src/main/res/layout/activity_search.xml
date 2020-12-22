@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.tudien.MainActivity"
-    tools:openDrawer="start">
+    tools:context="com.example.tudien.HomeScreen"
+    tools:openDrawer="end">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,8 +27,35 @@
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >
 
+
+            <SurfaceView
+                android:id="@+id/surfaceView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+            <LinearLayout
+                android:id="@+id/surfaceview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/white"
+                android:orientation="vertical"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/pink_red"/>
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_height="50dp"
+                android:background="@color/white" />
+        </FrameLayout>
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -38,8 +65,9 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu"/>
+
     <!--app:headerlayout: nhúng nav_header vào navigation drawer-->
     <!--app:menu: nhúng drawer_menu vào navigation drawer-->
     <!--com.google.android.material.navigation.NavigationView:  tạo 1 Navigation View để nhúng menu,header vào-->
-<!--android:fitsSystemWindows="true" auto điểu chỉnh padding của View đó theo thứ tự chiều sâu-->
+    <!--android:fitsSystemWindows="true" auto điểu chỉnh padding của View đó theo thứ tự chiều sâu-->
 </androidx.drawerlayout.widget.DrawerLayout>

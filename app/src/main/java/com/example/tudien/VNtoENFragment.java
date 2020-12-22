@@ -1,5 +1,6 @@
 package com.example.tudien;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -42,15 +43,16 @@ public class VNtoENFragment extends Fragment {
 
         if(id==R.id.action_search){
             //bắt sự kiện click ở đây
-            Toast.makeText(getActivity(),"nice",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), SearchActivity.class);
+            getActivity().startActivity(intent);
         }
         if(id==R.id.action_record){
             //bắt sự kiện click ở đây
-            Toast.makeText(getActivity(),"work",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"big",Toast.LENGTH_SHORT).show();
         }
         if(id==R.id.action_favorite){
             //bắt sự kiện click ở đây
-            Toast.makeText(getActivity(),"bro",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"dicc",Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }

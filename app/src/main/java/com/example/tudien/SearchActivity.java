@@ -23,8 +23,9 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
+public class SearchActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
+    Intent intentHome;
     private DrawerLayout drawer;
     NavigationView navigationView;
 
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_search);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
@@ -50,15 +51,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     }
-    //ActionBarDrawerToggle dùng để tạo nút "burger icon"
-    //ActionBarDrawerToggle cần phải khởi tạo 2 biến string trong "res->values->strings.xml" để sử sử dụng 2 giá trị này như 1 kiểu input
-    // ActionBarDrawerToggle(context, drawer layout variable, toolbar variable,string 1 variable, string 2 variable)
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) { //bắt sự kiện trên navigation View)
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-
+            case R.id.nav_Home:
+                intentHome = new Intent(this, HomeScreen.class);
+                intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                this.startActivity(intentHome);
+                break;
             case R.id.nav_ENEN:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new EnEnFragment()).addToBackStack(null).commit();                            //addToBackStack : added fragment -> removed replaced fragment -> restored removed fragment -> added.
@@ -78,17 +80,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_IrrVerb:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new IrrVerbFragment()).addToBackStack(null).commit();
-
+                break;
         }
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
     @Override
-    public void onBackPressed()                                                                      //hàm tạo ra khi nhấn Back: màng hình chỉ tắt Navagation Drawer, ko tắt Activity
+    public void onBackPressed()
     {
         FragmentManager manager = getSupportFragmentManager();
-        if (drawer.isDrawerOpen(GravityCompat.START))                                                //START = bên trái màng hình
+        if (drawer.isDrawerOpen(GravityCompat.START))
         {
             drawer.closeDrawer(GravityCompat.START);
         } else

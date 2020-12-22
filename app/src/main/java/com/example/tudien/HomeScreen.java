@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 public class HomeScreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
+    Intent intentHome;
     private DrawerLayout drawer;
     NavigationView navigationView;
 
@@ -51,11 +52,15 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
     }
 
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
+            case R.id.nav_Home:
+                intentHome = new Intent(this, HomeScreen.class);
+                intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                this.startActivity(intentHome);
+                break;
             case R.id.nav_ENEN:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new EnEnFragment()).addToBackStack(null).commit();                            //addToBackStack : added fragment -> removed replaced fragment -> restored removed fragment -> added.

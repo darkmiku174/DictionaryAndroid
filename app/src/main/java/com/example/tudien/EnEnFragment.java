@@ -1,5 +1,6 @@
 package com.example.tudien;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -42,7 +43,8 @@ public class EnEnFragment extends Fragment {
 
         if(id==R.id.action_search){
             //bắt sự kiện click ở đây
-            Toast.makeText(getActivity(),"nice",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), SearchActivity.class);
+            getActivity().startActivity(intent);
         }
         if(id==R.id.action_record){
             //bắt sự kiện click ở đây

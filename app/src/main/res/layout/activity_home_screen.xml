@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.tudien.MainActivity"
-    tools:openDrawer="start">
+    tools:context="com.example.tudien.HomeScreen"
+    tools:openDrawer="end">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,7 +27,33 @@
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >
+
+<!--Surfaceview tạo các bút mà không ảnh hưởng đến container, sẽ dùng để trang trí thêm cho màng hình chính
+            <SurfaceView
+                android:id="@+id/surfaceView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <LinearLayout
+                android:id="@+id/surfaceview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@color/bright_pink"
+                android:orientation="vertical">
+                <ImageButton
+                    android:id="@+id/en_vn"
+                    android:layout_width="107dp"
+                    android:layout_height="99dp"
+                    android:background="@drawable/en_vn"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Anh-Việt"
+                    android:layout_marginStart="45dp" />
+            </LinearLayout>-->
+        </FrameLayout>
 
     </LinearLayout>
 
@@ -38,6 +64,7 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu"/>
+
     <!--app:headerlayout: nhúng nav_header vào navigation drawer-->
     <!--app:menu: nhúng drawer_menu vào navigation drawer-->
     <!--com.google.android.material.navigation.NavigationView:  tạo 1 Navigation View để nhúng menu,header vào-->

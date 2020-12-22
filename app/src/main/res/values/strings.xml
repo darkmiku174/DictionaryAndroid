@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Tu dien</string>
+    <string name="app_name">Từ điển VIP</string>
+    <string name="search_hint">Đọc từ của bạn vào đây</string>
     <string name="navigation_drawer_open">Mở navigation drawer</string>
     <string name="navigation_drawer_close">Đóng navigation drawer</string>
     <!--
