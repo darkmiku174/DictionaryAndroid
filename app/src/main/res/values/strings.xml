@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">Tu dien</string>
     <string name="navigation_drawer_open">Mở navigation drawer</string>
     <string name="navigation_drawer_close">Đóng navigation drawer</string>
     <!--
