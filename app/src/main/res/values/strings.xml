@@ -3,6 +3,8 @@
     <string name="search_hint">Đọc từ của bạn vào đây</string>
     <string name="navigation_drawer_open">Mở navigation drawer</string>
     <string name="navigation_drawer_close">Đóng navigation drawer</string>
+    <string name="favorite">Favorite</string>
+    <string name="irregular">Irregular</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
