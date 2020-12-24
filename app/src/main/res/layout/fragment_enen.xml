@@ -1,17 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light"
-    android:orientation="vertical">
-    <TextView
-        android:id="@+id/tv_entoen"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="EN TO EN"
-        android:textSize="12sp"
-        android:layout_centerInParent="true"/>
+    android:background="@android:color/white">
 
-</RelativeLayout>
-<!--tạo layout cho sự kiến click các fragment (chức năng) trên drawer navigation-->
-<!--cần thêm 4 cái -->
+    <TextView
+        android:id="@+id/txt_tuvung"
+        android:layout_width="369dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txt_phienam"
+        android:text="Từ vựng here"
+        android:textColor="@color/dark_blue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/txt_phienam"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/txt_phienam"
+        android:layout_width="368dp"
+        android:layout_height="35dp"
+        android:layout_above="@+id/txt_loaitu"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:text="phiên âm here"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_loaitu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_loaitu"
+        android:layout_width="369dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txt_description"
+        android:layout_marginBottom="8dp"
+        android:text="Loại từ here"
+        android:textColor="@color/pink_red"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_description"
+        android:layout_width="345dp"
+        android:layout_height="440dp"
+        android:layout_marginBottom="16dp"
+        android:text="description here"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.757"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--tạo layout cho sự kiến click các fragment (chức năng) trên drawer navigation-->
