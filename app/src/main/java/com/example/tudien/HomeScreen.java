@@ -66,8 +66,10 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                         new EnEnFragment()).addToBackStack(null).commit();                            //addToBackStack : added fragment -> removed replaced fragment -> restored removed fragment -> added.
                 break;
             case R.id.nav_ENtoVN:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ENtoVNFragment()).addToBackStack(null).commit();
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new ENtoVNFragment()).addToBackStack(null).commit();
+                Intent intent=new Intent(this,SearchActivity.class);
+                this.startActivity(intent);
                 break;
             case R.id.nav_VNtoEN:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

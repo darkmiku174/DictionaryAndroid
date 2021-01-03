@@ -33,7 +33,7 @@ public class EnEnFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         /*inflate menu*/
-        inflater.inflate(R.menu.menu_toolbar,menu);
+        inflater.inflate(R.menu.menu_toolbar, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -41,21 +41,26 @@ public class EnEnFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if(id==R.id.action_search){
+        if (id == R.id.action_search) {
             //bắt sự kiện click ở đây
             Intent intent = new Intent(getActivity(), SearchActivity.class);
             getActivity().startActivity(intent);
         }
-        if(id==R.id.action_record){
+        if (id == R.id.action_record) {
             //bắt sự kiện click ở đây
-            Toast.makeText(getActivity(),"work",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "work", Toast.LENGTH_SHORT).show();
         }
-        if(id==R.id.action_favorite){
+        if (id == R.id.action_favorite) {
             //bắt sự kiện click ở đây
-            Toast.makeText(getActivity(),"bro",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "bro", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+    }
 }
 //Inflater là 1 component giúp chuyển layout file (xml) thành View(Java  Code) trong Android
