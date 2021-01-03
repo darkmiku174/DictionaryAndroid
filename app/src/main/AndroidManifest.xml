@@ -14,7 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".En2VnActivity"></activity>
+        <activity android:name=".ActivityFavWord"></activity>
+        <activity android:name=".ActivityIrrVerb" />
+        <activity android:name=".ActivityVnToEn" />
+        <activity android:name=".ActivityEnToVn" />
+        <activity
+            android:name=".ActivityEnEn"
+            android:theme="@style/AppTheme.NoActionBar2" />
+        <activity android:name=".En2VnActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".HomeScreen" />
         <!--

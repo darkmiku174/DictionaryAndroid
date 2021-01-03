@@ -41,11 +41,6 @@ public class EnEnFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_search) {
-            //bắt sự kiện click ở đây
-            Intent intent = new Intent(getActivity(), SearchActivity.class);
-            getActivity().startActivity(intent);
-        }
         if (id == R.id.action_record) {
             //bắt sự kiện click ở đây
             Toast.makeText(getActivity(), "work", Toast.LENGTH_SHORT).show();

@@ -29,7 +29,6 @@
 
 
             <androidx.appcompat.widget.SearchView
-                android:backgroundTint="@color/white"
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,6 +42,7 @@
                 android:theme="@style/SearchTextViewTheme"
                 app:queryHint="@string/searchview_text_hint"
                 app:searchIcon="@drawable/ic_search"
+                android:backgroundTint="@color/white"
                 >
 
 

@@ -8,20 +8,12 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
-import android.widget.ListView;
-import android.widget.SearchView;
 
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.ArrayList;
 
 public class HomeScreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
@@ -62,26 +54,29 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 this.startActivity(intentHome);
                 break;
             case R.id.nav_ENEN:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new EnEnFragment()).addToBackStack(null).commit();                            //addToBackStack : added fragment -> removed replaced fragment -> restored removed fragment -> added.
+                intentHome = new Intent(this, ActivityEnEn.class);
+                intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                this.startActivity(intentHome);
                 break;
             case R.id.nav_ENtoVN:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new ENtoVNFragment()).addToBackStack(null).commit();
-                Intent intent=new Intent(this,SearchActivity.class);
-                this.startActivity(intent);
+                intentHome = new Intent(this, ActivityEnToVn.class);
+                intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                this.startActivity(intentHome);
                 break;
             case R.id.nav_VNtoEN:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new VNtoENFragment()).addToBackStack(null).commit();
+                intentHome = new Intent(this, ActivityVnToEn.class);
+                intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                this.startActivity(intentHome);
                 break;
             case R.id.nav_FavWord:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new FavWordFragment()).addToBackStack(null).commit();
+                intentHome = new Intent(this, ActivityFavWord.class);
+                intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                this.startActivity(intentHome);
                 break;
             case R.id.nav_IrrVerb:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new IrrVerbFragment()).addToBackStack(null).commit();
+                intentHome = new Intent(this, ActivityIrrVerb.class);
+                intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                this.startActivity(intentHome);
                 break;
         }
 
