@@ -73,6 +73,7 @@
                             android:orientation="vertical">
 
                             <Button
+                                android:id="@+id/btn_vn_en"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:background="@drawable/vn_en" />
@@ -107,6 +108,7 @@
                             android:orientation="vertical">
 
                             <Button
+                                android:id="@+id/btn_en_en"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:background="@drawable/english" />
@@ -141,6 +143,7 @@
                             android:orientation="vertical">
 
                             <Button
+                                android:id="@+id/btn_en_vn"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:background="@drawable/en_vn" />
@@ -175,6 +178,7 @@
                             android:orientation="vertical">
 
                             <Button
+                                android:id="@+id/btn_irr_verb"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:background="@drawable/irregular" />
@@ -209,6 +213,7 @@
                             android:orientation="vertical">
 
                             <Button
+                                android:id="@+id/btn_bookmark"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:background="@drawable/book" />
@@ -243,6 +248,7 @@
                             android:orientation="vertical">
 
                             <Button
+                                android:id="@+id/btn_history"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:background="@drawable/sand_clock" />

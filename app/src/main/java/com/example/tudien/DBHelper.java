@@ -3,6 +3,7 @@ package com.example.tudien;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,9 +19,9 @@ public class DBHelper {
     public DBHelper(Context context, Integer check) {
         this.context = context;
         if (check == 0)
-            DB_NAME = "EV.db";
-        else if (check == 1)
             DB_NAME = "EE.db";
+        else if (check == 1)
+            DB_NAME = "EV.db";
         else
             DB_NAME = "";
         copyDatabase();
@@ -51,18 +52,6 @@ public class DBHelper {
 
     public void closeDB(SQLiteDatabase db) {
         db.close();
-    }
-
-    public void createTable() {
-        SQLiteDatabase db = openDB();
-        String sql = "create table if not exists tblStudent(" +
-                "id integer PRIMARY KEY AUTOINCREMENT," +
-                "word TEXT," +
-                "html TEXT," +
-                "description TEXT," +
-                "pronounce TEXT) ";
-        db.execSQL(sql);
-        closeDB(db);
     }
 
     public ArrayList<DictEV> getDictEV() {
@@ -98,24 +87,35 @@ public class DBHelper {
                 null,
                 null);
         while (cursor.moveToNext()) {
-            String word = cursor.getString(0);
-            String type = cursor.getString(1);
+            int id = cursor.getInt(0);
+            String word = cursor.getString(1);
             String definition = cursor.getString(2);
-            arrayList.add(new DictEE(word, type, definition));
+            String example = cursor.getString(3);
+            String synonyms = cursor.getString(4);
+            String antonyms = cursor.getString(5);
+            arrayList.add(new DictEE(id, word, definition, example, synonyms, antonyms));
         }
         closeDB(db);
         return arrayList;
     }
 
-    public Cursor getSuggestions(String text)
-    {
-        Cursor c= openDB().rawQuery("SELECT rowid _id, word FROM av WHERE word LIKE '"+text+"%' LIMIT 40",null);
+    public Cursor getSuggestionsEV(String text) {
+        Cursor c = openDB().rawQuery("SELECT rowid _id, word FROM av WHERE word LIKE '" + text + "%' LIMIT 40", null);
         return c;
     }
 
-    public Cursor getMeaning(String text)
-    {
-        Cursor c= openDB().rawQuery("SELECT description, pronounce FROM av WHERE word==UPPER('"+text+"')",null);
+    public Cursor getMeaningEV(String text) {
+        Cursor c = openDB().rawQuery("SELECT description, pronounce FROM av WHERE word=='" + text + "'", null);
+        return c;
+    }
+
+    public Cursor getSuggestionsEE(String text) {
+        Cursor c = openDB().rawQuery("SELECT _id, en_word FROM words WHERE en_word LIKE '" + text + "%' LIMIT 40", null);
+        return c;
+    }
+
+    public Cursor getMeaningEE(String text) {
+        Cursor c = openDB().rawQuery("SELECT en_definition, example, synonyms, antonyms FROM words WHERE en_word==UPPER('" + text + "')", null);
         return c;
     }
 }

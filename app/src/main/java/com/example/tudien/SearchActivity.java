@@ -6,31 +6,19 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cursoradapter.widget.CursorAdapter;
 import androidx.cursoradapter.widget.SimpleCursorAdapter;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.SQLException;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import java.util.ArrayList;
 
 public class SearchActivity extends AppCompatActivity {
 
     androidx.appcompat.widget.SearchView search;
     static DBHelper databaseHelper;
     SimpleCursorAdapter simpleCursorAdapter;
+    int db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +37,29 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-
-        databaseHelper = new DBHelper(this,0);
+        Bundle bundle = getIntent().getExtras();
+        db = bundle.getInt("db");
+        databaseHelper = new DBHelper(this, db);
         databaseHelper.openDB();
-
-        final String[] from = new String[]{"word"};
+        String name;
+        switch (db) {
+            case 0:
+                name="en_word";
+                break;
+            case 1:
+                name="word";
+                break;
+            default:
+                name="word";
+                break;
+        }
+        final String[] from = new String[]{name};
         final int[] to = new int[]{R.id.suggestion_text};
 
 
         simpleCursorAdapter = new SimpleCursorAdapter(SearchActivity.this,
                 R.layout.suggestion_row, null, from, to, 0
-        ){
+        ) {
             @Override
             public void changeCursor(Cursor cursor) {
                 super.changeCursor(cursor);
@@ -75,19 +75,40 @@ public class SearchActivity extends AppCompatActivity {
                 CursorAdapter ca = search.getSuggestionsAdapter();
                 Cursor cursor = ca.getCursor();
                 cursor.moveToPosition(position);
-                String clicked_word =  cursor.getString(cursor.getColumnIndex("word"));
-                search.setQuery(clicked_word,false);
-
+                String clicked_word;
+                switch (db) {
+                    case 0:
+                        clicked_word = cursor.getString(cursor.getColumnIndex("en_word"));
+                        break;
+                    case 1:
+                        clicked_word = cursor.getString(cursor.getColumnIndex("word"));
+                        break;
+                    default:
+                        clicked_word = cursor.getString(cursor.getColumnIndex("word"));
+                        break;
+                }
+                search.setQuery(clicked_word, false);
                 search.clearFocus();
                 search.setFocusable(false);
-
-                Intent intent = new Intent(SearchActivity.this, En2VnActivity.class);
+                Intent intent;
+                switch (db) {
+                    case 0:
+                        intent = new Intent(SearchActivity.this, ActivityEnEn.class);
+                        break;
+                    case 1:
+                        intent = new Intent(SearchActivity.this, ActivityEnToVn.class);
+                        break;
+                    default:
+                        intent = new Intent(SearchActivity.this, ActivityEnToVn.class);
+                        break;
+                }
                 Bundle bundle = new Bundle();
-                bundle.putString("word",clicked_word);
+                bundle.putString("word", clicked_word);
                 intent.putExtras(bundle);
                 startActivity(intent);
                 return true;
             }
+
             @Override
             public boolean onSuggestionSelect(int position) {
                 // Your code here
@@ -97,16 +118,23 @@ public class SearchActivity extends AppCompatActivity {
 
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query)
-            {
-                String text =  search.getQuery().toString();
+            public boolean onQueryTextSubmit(String query) {
+                String text = search.getQuery().toString();
+                Cursor c;
+                switch (db) {
+                    case 0:
+                        c = databaseHelper.getMeaningEE(text);
+                        break;
+                    case 1:
+                        c = databaseHelper.getMeaningEV(text);
+                        break;
+                    default:
+                        c = databaseHelper.getMeaningEV(text);
+                        break;
+                }
 
-                Cursor c = databaseHelper.getMeaning(text);
-
-
-                if(c.getCount()==0)
-                {
-                    search.setQuery("",false);
+                if (c.getCount() == 0) {
+                    search.setQuery("", false);
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(SearchActivity.this, R.style.MyDialogTheme);
                     builder.setTitle("Word Not Found");
@@ -133,15 +161,24 @@ public class SearchActivity extends AppCompatActivity {
                     AlertDialog dialog = builder.create();
                     // display dialog
                     dialog.show();
-                }
-                else
-                {
+                } else {
                     search.clearFocus();
                     search.setFocusable(false);
 
-                    Intent intent = new Intent(SearchActivity.this, En2VnActivity.class);
+                    Intent intent;
+                    switch (db) {
+                        case 0:
+                            intent = new Intent(SearchActivity.this, ActivityEnEn.class);
+                            break;
+                        case 1:
+                            intent = new Intent(SearchActivity.this, ActivityEnToVn.class);
+                            break;
+                        default:
+                            intent = new Intent(SearchActivity.this, ActivityEnToVn.class);
+                            break;
+                    }
                     Bundle bundle = new Bundle();
-                    bundle.putString("word",text);
+                    bundle.putString("word", text);
                     intent.putExtras(bundle);
                     startActivity(intent);
 
@@ -153,7 +190,18 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(final String s) {
                 search.setIconifiedByDefault(false);
-                Cursor cursorSuggestion=databaseHelper.getSuggestions(s);
+                Cursor cursorSuggestion;
+                switch (db) {
+                    case 0:
+                        cursorSuggestion = databaseHelper.getSuggestionsEE(s);
+                        break;
+                    case 1:
+                        cursorSuggestion = databaseHelper.getSuggestionsEV(s);
+                        break;
+                    default:
+                        cursorSuggestion = databaseHelper.getSuggestionsEV(s);
+                        break;
+                }
                 simpleCursorAdapter.changeCursor(cursorSuggestion);
                 return false;
             }

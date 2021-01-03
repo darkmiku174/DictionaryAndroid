@@ -11,4 +11,7 @@
     <color name="gray">#fcfcfc</color>
     <color name="dark_blue">#352899</color>
     <color name="colorTextHint">#c6c6c6</color>
+    <color name="purple">#8d10c7</color>
+    <color name="light_red">#e32b62</color>
+
 </resources>

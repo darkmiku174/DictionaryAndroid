@@ -11,14 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
+        <!--<androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             app:titleTextColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/dark_red"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="Dictionary"/>
+            app:title="Dictionary"/>-->
 
 
         <LinearLayout

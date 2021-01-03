@@ -6,171 +6,89 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cursoradapter.widget.CursorAdapter;
 import androidx.cursoradapter.widget.SimpleCursorAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class ActivityEnToVn extends AppCompatActivity {
 
+    TextView textViewTu, textViewPhienAm, textViewNghia;
+    String word;
+    DBHelper myDbHelper;
+    Cursor c = null;
 
-    androidx.appcompat.widget.SearchView search;
-    static DBHelper databaseHelper;
-    SimpleCursorAdapter simpleCursorAdapter;
+    public String description;
+    public String pronounce;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_toolbar, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.action_favorite:
-                //click event
-                Toast.makeText(this, "work", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.action_record:
-                //click event
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+    TextToSpeech tts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+        setContentView(R.layout.activity_en_to_vn);
+        Bundle bundle = getIntent().getExtras();
+        word = bundle.getString("word");
 
 
-        search = findViewById(R.id.search_view);
-
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                search.setIconified(false);
-            }
-        });
+        myDbHelper = new DBHelper(this, 1);
+        myDbHelper.openDB();
 
 
-        databaseHelper = new DBHelper(this,0);
-        databaseHelper.openDB();
+        c = myDbHelper.getMeaningEV(word);
 
-        final String[] from = new String[]{"word"};
-        final int[] to = new int[]{R.id.suggestion_text};
+        if (c.moveToFirst()) {
+            description = c.getString(c.getColumnIndex("description"));
+            pronounce = c.getString(c.getColumnIndex("pronounce"));
+        }
+        textViewTu = findViewById(R.id.txt_tuvung);
+        textViewPhienAm = findViewById(R.id.txt_phienam);
+        textViewNghia = findViewById(R.id.txt_description);
 
-
-        simpleCursorAdapter = new SimpleCursorAdapter(ActivityEnToVn.this,
-                R.layout.suggestion_row, null, from, to, 0
-        ){
-            @Override
-            public void changeCursor(Cursor cursor) {
-                super.changeCursor(cursor);
-            }
-        };
-
-
-        search.setSuggestionsAdapter(simpleCursorAdapter);
-
-        search.setOnSuggestionListener(new androidx.appcompat.widget.SearchView.OnSuggestionListener() {
-            @Override
-            public boolean onSuggestionClick(int position) {
-                CursorAdapter ca = search.getSuggestionsAdapter();
-                Cursor cursor = ca.getCursor();
-                cursor.moveToPosition(position);
-                String clicked_word =  cursor.getString(cursor.getColumnIndex("word"));
-                search.setQuery(clicked_word,false);
-
-                search.clearFocus();
-                search.setFocusable(false);
-
-                Intent intent = new Intent(ActivityEnToVn.this, En2VnActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("word",clicked_word);
-                intent.putExtras(bundle);
-                startActivity(intent);
-                return true;
-            }
-            @Override
-            public boolean onSuggestionSelect(int position) {
-                // Your code here
-                return true;
-            }
-        });
-
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query)
-            {
-                String text =  search.getQuery().toString();
-
-                Cursor c = databaseHelper.getMeaning(text);
-
-
-                if(c.getCount()==0)
-                {
-                    search.setQuery("",false);
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ActivityEnToVn.this, R.style.MyDialogTheme);
-                    builder.setTitle("Word Not Found");
-                    builder.setMessage("Please search again");
-
-                    String positiveText = getString(android.R.string.ok);
-                    builder.setPositiveButton(positiveText,
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // positive button logic
-                                }
-                            });
-
-                    String negativeText = getString(android.R.string.cancel);
-                    builder.setNegativeButton(negativeText,
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    search.clearFocus();
-                                }
-                            });
-
-                    AlertDialog dialog = builder.create();
-                    // display dialog
-                    dialog.show();
-                }
-                else
-                {
-                    search.clearFocus();
-                    search.setFocusable(false);
-
-                    Intent intent = new Intent(ActivityEnToVn.this, En2VnActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("word",text);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-
-                }
-                return false;
-            }
-
-
-            @Override
-            public boolean onQueryTextChange(final String s) {
-                search.setIconifiedByDefault(false);
-                Cursor cursorSuggestion=databaseHelper.getSuggestions(s);
-                simpleCursorAdapter.changeCursor(cursorSuggestion);
-                return false;
-            }
-        });
-
+        textViewTu.setText(word);
+        textViewPhienAm.setText(pronounce);
+        textViewNghia.setText(description);
+//        ImageButton btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
+//
+//        btnSpeak.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                tts = new TextToSpeech(WordMeaningActivity.this, new TextToSpeech.OnInitListener() {
+//                    @Override
+//                    public void onInit(int status) {
+//                        // TODO Auto-generated method stub
+//                        if (status == TextToSpeech.SUCCESS) {
+//                            int result = tts.setLanguage(Locale.getDefault());
+//                            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+//                                Log.e("error", "This Language is not supported");
+//                            } else {
+//                                tts.speak(enWord, TextToSpeech.QUEUE_FLUSH, null);
+//                            }
+//                        } else
+//                            Log.e("error", "Initialization Failed!");
+//                    }
+//                });
+//            }
+//        });
     }
 }

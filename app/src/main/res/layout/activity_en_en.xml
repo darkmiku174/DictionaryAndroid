@@ -1,55 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchActivity">
+    android:background="@android:color/white">
 
-    <com.google.android.material.appbar.AppBarLayout
-        style="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/txt_tuvung"
+        android:layout_width="369dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:text="Từ vựng here"
+        android:textColor="@color/dark_blue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            app:titleTextColor="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="Dictionary"/>
+    <TextView
+        android:id="@+id/txt_description"
+        android:layout_width="343dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="1dp"
+        android:text="description here"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.712"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
+    <TextView
+        android:id="@+id/synonyms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="- Synonyms :"
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/dark_red"
-            android:orientation="horizontal">
+        android:textColor="@color/purple"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_description" />
 
+    <TextView
+        android:id="@+id/antonyms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="- Antonyms :"
+        android:textColor="@color/purple"
 
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/search_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="15dp"
-                android:background="@color/dark_blue"
-                android:clickable="true"
-                android:focusable="true"
-                android:theme="@style/SearchTextViewTheme"
-                app:queryHint="@string/searchview_text_hint"
-                app:searchIcon="@drawable/ic_search"
-                android:backgroundTint="@color/white"
-                >
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_synonyms" />
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="- Defination :"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tuvung" />
 
-            </androidx.appcompat.widget.SearchView>
+    <TextView
+        android:id="@+id/txt_synonyms"
+        android:layout_width="342dp"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/synonyms" />
 
-        </LinearLayout>
+    <TextView
+        android:id="@+id/txt_antonyms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.132"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/antonyms" />
+    <ImageButton
+        android:id="@+id/btn_favorite"
+        android:layout_width="48dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="308dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/txt_tuvung"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_volumn" />
 
+    <ImageButton
+        android:id="@+id/btn_speak"
+        android:layout_width="48dp"
+        android:layout_height="43dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/txt_tuvung"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toEndOf="@+id/btn_favorite"
+        app:srcCompat="@drawable/ic_star_black_normal" />
 
-    </com.google.android.material.appbar.AppBarLayout>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--tạo layout cho sự kiến click các fragment (chức năng) trên drawer navigation-->

@@ -1,32 +1,48 @@
 package com.example.tudien;
 
 public class DictEE {
+    int id;
     String word;
-    String wordtype;
     String definition;
+    String example;
+    String synonyms;
+    String antonyms;
 
-    public DictEE(String word, String wordtype, String definition) {
+    public DictEE(int id, String word, String definition, String example, String synonyms, String antonyms) {
+        this.id = id;
         this.word = word;
-        this.wordtype = wordtype;
         this.definition = definition;
+        this.example = example;
+        this.synonyms = synonyms;
+        this.antonyms = antonyms;
     }
 
+    public int getId() { return id; }
     public String getWord() {
         return word;
     }
-    public String getWordType() {
-        return wordtype;
-    }
+
     public String getDefinition() {
         return definition;
     }
+
+    public String getExample() {
+        return example;
+    }
+
+    public String getAntonyms() { return antonyms; }
+
+    public String getSynonyms() { return synonyms; }
+
 
     @Override
     public String toString() {
         return "{" +
                 ", word ='" + getWord() + '\'' +
-                ", type ='" + getWordType() + '\'' +
                 ", definition ='" + getDefinition() + '\'' +
+                ", example ='" + getExample() + '\'' +
+                ", synonyms ='" + getSynonyms() + '\'' +
+                ", antonyms ='" + getAntonyms() + '\'' +
                 '}';
     }
 }

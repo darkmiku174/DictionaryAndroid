@@ -17,12 +17,13 @@
         <activity android:name=".ActivityFavWord"></activity>
         <activity android:name=".ActivityIrrVerb" />
         <activity android:name=".ActivityVnToEn" />
-        <activity android:name=".ActivityEnToVn" />
+        <activity android:name=".ActivityEnToVn"
+            android:theme="@style/AppTheme.NoActionBar2" />
         <activity
             android:name=".ActivityEnEn"
             android:theme="@style/AppTheme.NoActionBar2" />
-        <activity android:name=".En2VnActivity" />
-        <activity android:name=".SearchActivity" />
+        <activity android:name=".SearchActivity"
+            android:theme="@style/AppTheme.NoActionBar2" />
         <activity android:name=".HomeScreen" />
         <!--
                Set to true if your app is Standalone, that is, it does not require the handheld
