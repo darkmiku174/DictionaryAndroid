@@ -36,12 +36,27 @@
 
     <TextView
         android:id="@+id/txt_description"
-        android:layout_width="345dp"
-        android:layout_height="440dp"
+        android:layout_width="336dp"
+        android:layout_height="443dp"
+        android:layout_marginTop="12dp"
         android:text="description here"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="- Nghĩa :"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_phienam" />
 
