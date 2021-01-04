@@ -11,6 +11,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.Locale;
 
 public class ActivityEnEn extends AppCompatActivity {
@@ -19,6 +25,7 @@ public class ActivityEnEn extends AppCompatActivity {
     ImageButton btnSpeak, btnFav;
     String word;
     DBHelper myDbHelper;
+    String fileName;
     Cursor c = null;
 
     public String definition;
@@ -34,7 +41,7 @@ public class ActivityEnEn extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         word = bundle.getString("word");
 
-
+        fileName = "BOOKMARK.txt";
         myDbHelper = new DBHelper(this, 0);
         myDbHelper.openDB();
 
@@ -87,8 +94,29 @@ public class ActivityEnEn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 btnFav.setImageResource(R.drawable.ic_star_check);
-                Toast.makeText(ActivityEnEn.this, "Saved", Toast.LENGTH_SHORT).show();
+                writeToBookmark();
             }
         });
+    }
+
+    private void writeToBookmark() {
+        File file = new File(getFilesDir(), fileName);
+        try {
+            FileOutputStream fos = openFileOutput(fileName, MODE_APPEND);
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+            BufferedWriter writer = new BufferedWriter(osw);
+            writer.write(word + "/" + definition + "\n");
+            writer.close();
+            osw.close();
+            fos.close();
+
+            Toast.makeText(ActivityEnEn.this, "Saved", Toast.LENGTH_SHORT).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(ActivityEnEn.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(ActivityEnEn.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 }
