@@ -84,16 +84,16 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         Bookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeScreen.this, SearchActivity.class);
-                intent.putExtra("db", 3);
-                startActivity(intent);
+//                Intent intent = new Intent(HomeScreen.this, SearchActivity.class);
+//                intent.putExtra("db", 3);
+//                startActivity(intent);
             }
         });
 
         IrrVerb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeScreen.this, SearchActivity.class);
+                Intent intent = new Intent(HomeScreen.this, ActivityIrrVerb.class);
                 intent.putExtra("db", 4);
                 startActivity(intent);
             }
