@@ -47,9 +47,12 @@ public class ActivityIrrVerb extends AppCompatActivity {
         arrayAdapter.clear();
         readFromAsset();
         arrayAdapter.notifyDataSetChanged();
-        gridView.setBackgroundColor(Color.WHITE);
+
+       /* gridView.setBackgroundColor(Color.WHITE);
+        gridView.setHorizontalSpacing(1);
+        gridView.setVerticalSpacing(1);*/
     }
-    
+
     private void readFromAsset() {
         AssetManager am = this.getAssets();
         StringBuffer buf = new StringBuffer();

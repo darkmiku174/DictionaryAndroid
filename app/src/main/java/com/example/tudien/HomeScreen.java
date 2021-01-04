@@ -41,7 +41,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         IrrVerb = findViewById(R.id.btn_irr_verb);
         EntoEn = findViewById(R.id.btn_en_en);
         Bookmark = findViewById(R.id.btn_bookmark);
-        History = findViewById(R.id.btn_history);
+
 
 
         navigationView.setNavigationItemSelectedListener(this);
