@@ -97,7 +97,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/antonyms" />
     <ImageButton
-        android:id="@+id/btn_favorite"
+        android:id="@+id/btn_speak"
         android:layout_width="48dp"
         android:layout_height="43dp"
         android:layout_marginStart="308dp"
@@ -107,14 +107,14 @@
         app:srcCompat="@drawable/ic_volumn" />
 
     <ImageButton
-        android:id="@+id/btn_speak"
+        android:id="@+id/btn_favorite"
         android:layout_width="48dp"
         android:layout_height="43dp"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/txt_tuvung"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toEndOf="@+id/btn_favorite"
+        app:layout_constraintStart_toEndOf="@+id/btn_speak"
         app:srcCompat="@drawable/ic_star_uncheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

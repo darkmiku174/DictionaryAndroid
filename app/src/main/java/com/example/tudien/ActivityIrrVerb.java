@@ -13,6 +13,7 @@ import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,9 +22,13 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -45,7 +50,9 @@ public class ActivityIrrVerb extends AppCompatActivity {
 
         gridView.setAdapter(arrayAdapter);
         arrayAdapter.clear();
-        readFromAsset();
+        //readFromAsset();
+        copyFile("IRR_VERB.txt");
+        readFromInternal();
         arrayAdapter.notifyDataSetChanged();
 
        /* gridView.setBackgroundColor(Color.WHITE);
@@ -53,11 +60,10 @@ public class ActivityIrrVerb extends AppCompatActivity {
         gridView.setVerticalSpacing(1);*/
     }
 
-    private void readFromAsset() {
-        AssetManager am = this.getAssets();
+    private void readFromInternal() {
         StringBuffer buf = new StringBuffer();
         try {
-            InputStream fis = am.open("IRR_VERB.txt");
+            FileInputStream fis = openFileInput("IRR_VERB.txt");
             if (fis != null) {
                 InputStreamReader isr = new InputStreamReader(fis);
                 BufferedReader reader = new BufferedReader(isr);
@@ -75,5 +81,30 @@ public class ActivityIrrVerb extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void copyFile(String filename) {
+        AssetManager assetManager = this.getAssets();
+        InputStream in = null;
+        OutputStream out = null;
+        try {
+            in = assetManager.open(filename);
+            String newFileName = "/data/data/" + this.getPackageName() + "/files/" + filename;
+            out = new FileOutputStream(newFileName);
+
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = in.read(buffer)) != -1) {
+                out.write(buffer, 0, read);
+            }
+            in.close();
+            in = null;
+            out.flush();
+            out.close();
+            out = null;
+        } catch (Exception e) {
+            Log.e("tag", e.getMessage());
+        }
+
     }
 }
