@@ -1,20 +1,11 @@
 package com.example.tudien;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cursoradapter.widget.CursorAdapter;
-import androidx.cursoradapter.widget.SimpleCursorAdapter;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -49,7 +40,7 @@ public class ActivityEnEn extends AppCompatActivity {
 
 
         c = myDbHelper.getMeaningEE(word);
-        myDbHelper.inserHistory(word);
+        myDbHelper.inserHistoryEE(word);
 
         if (c.moveToFirst()) {
             definition = c.getString(c.getColumnIndex("en_definition"));

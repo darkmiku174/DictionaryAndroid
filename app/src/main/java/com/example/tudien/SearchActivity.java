@@ -15,11 +15,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,6 +30,7 @@ public class SearchActivity extends AppCompatActivity {
     static DBHelper databaseHelper;
     SimpleCursorAdapter simpleCursorAdapter;
     ImageButton btnSpeak;
+    Button btnClear;
     final int REQ_CODE_SPEECH_INPUT = 100;
     int db;
     ArrayList<History> historyList;
@@ -243,13 +243,23 @@ public class SearchActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(SearchActivity.this);
 
         recyclerView.setLayoutManager(layoutManager);
-        switch (db){
+        switch (db) {
             case 0:
                 fetch_historyEE();
                 break;
             case 1:
+                fetch_historyEV();
                 break;
         }
+
+        btnClear = findViewById(R.id.btn_clear);
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                databaseHelper.openDB();
+                showAlertDialog();
+            }
+        });
 
     }
 
@@ -294,8 +304,7 @@ public class SearchActivity extends AppCompatActivity {
 
         History h;
         databaseHelper.openDB();
-        Toast.makeText(this, "123", Toast.LENGTH_SHORT).show();
-        cursorHistory = databaseHelper.getHistory();
+        cursorHistory = databaseHelper.getHistoryEE();
         if (cursorHistory.moveToFirst()) {
             do {
                 h = new History(cursorHistory.getString(cursorHistory.getColumnIndex("word")), cursorHistory.getString(cursorHistory.getColumnIndex("en_definition")));
@@ -311,12 +320,75 @@ public class SearchActivity extends AppCompatActivity {
         } else {
             emptyHistory.setVisibility(View.GONE);
         }
-        Toast.makeText(this, "oke", Toast.LENGTH_SHORT).show();
+    }
+
+    private void fetch_historyEV() {
+        historyList = new ArrayList<>();
+        historyAdapter = new RecyclerViewAdapterHistory(this, historyList);
+        recyclerView.setAdapter(historyAdapter);
+
+        History h;
+        databaseHelper.openDB();
+        cursorHistory = databaseHelper.getHistoryEV();
+        if (cursorHistory.moveToFirst()) {
+            do {
+                h = new History(cursorHistory.getString(cursorHistory.getColumnIndex("word")), cursorHistory.getString(cursorHistory.getColumnIndex("description")));
+                historyList.add(h);
+            }
+            while (cursorHistory.moveToNext());
+        }
+
+        historyAdapter.notifyDataSetChanged();
+
+        if (historyAdapter.getItemCount() == 0) {
+            emptyHistory.setVisibility(View.VISIBLE);
+        } else {
+            emptyHistory.setVisibility(View.GONE);
+        }
+    }
+
+    private void showAlertDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SearchActivity.this, R.style.MyDialogTheme);
+        builder.setTitle("Are you sure?");
+        builder.setMessage("All the history will be deleted");
+
+        String positiveText = "Yes";
+        builder.setPositiveButton(positiveText,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        databaseHelper.deleteHistory();
+                        finish();
+                        startActivity(getIntent());
+                    }
+                });
+
+        String negativeText = "No";
+        builder.setNegativeButton(negativeText,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        fetch_historyEE();
+        switch (db) {
+            case 0:
+                fetch_historyEE();
+                break;
+            case 1:
+                fetch_historyEV();
+                break;
+        }
+        search.setQuery("", false);
     }
 }

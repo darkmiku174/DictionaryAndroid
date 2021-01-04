@@ -74,14 +74,25 @@ public class DBHelper {
         return c;
     }
 
-    public void inserHistory(String text){
+    public void inserHistoryEE(String text){
 
         openDB().execSQL("INSERT INTO history(word) VALUES (UPPER ('"+text+"'))");
     }
 
-    public Cursor getHistory()
+    public Cursor getHistoryEE()
     {
         Cursor c= openDB().rawQuery("select distinct  word, en_definition from history h join words w on h.word==w.en_word order by h._id desc",null);
+        return c;
+    }
+
+    public void inserHistoryEV(String text){
+
+        openDB().execSQL("INSERT INTO history(word) VALUES (LOWER ('"+text+"'))");
+    }
+
+    public Cursor getHistoryEV()
+    {
+        Cursor c= openDB().rawQuery("select distinct  h.word, description from history h join av w on h.word==w.word order by h._id desc",null);
         return c;
     }
 

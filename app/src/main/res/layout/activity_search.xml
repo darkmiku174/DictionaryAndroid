@@ -7,6 +7,7 @@
     tools:context=".SearchActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout2"
         style="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -38,21 +39,32 @@
             </androidx.appcompat.widget.SearchView>
 
             <ImageButton
-                android:layout_gravity="center"
                 android:id="@+id/btn_speak"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
+                android:layout_gravity="center"
                 android:background="@drawable/ic_micro" />
 
         </LinearLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
+
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_clear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CLEAR ALL"
+            android:background="@color/dark_red"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
 
         <RelativeLayout
             android:id="@+id/empty_history"
