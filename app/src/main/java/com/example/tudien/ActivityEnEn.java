@@ -87,7 +87,6 @@ public class ActivityEnEn extends AppCompatActivity {
                             Log.e("error", "Initialization Failed!");
                     }
                 });
-                Toast.makeText(ActivityEnEn.this, "ok", Toast.LENGTH_SHORT).show();
             }
         });
     }

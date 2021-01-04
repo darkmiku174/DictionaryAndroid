@@ -35,6 +35,7 @@ public class ActivityEnToVn extends AppCompatActivity {
 
     TextView textViewTu, textViewPhienAm, textViewNghia;
     String word;
+    ImageButton btnSpeak;
     DBHelper myDbHelper;
     Cursor c = null;
 
@@ -68,27 +69,27 @@ public class ActivityEnToVn extends AppCompatActivity {
         textViewTu.setText(word);
         textViewPhienAm.setText(pronounce);
         textViewNghia.setText(description);
-//        ImageButton btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
-//
-//        btnSpeak.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                tts = new TextToSpeech(WordMeaningActivity.this, new TextToSpeech.OnInitListener() {
-//                    @Override
-//                    public void onInit(int status) {
-//                        // TODO Auto-generated method stub
-//                        if (status == TextToSpeech.SUCCESS) {
-//                            int result = tts.setLanguage(Locale.getDefault());
-//                            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-//                                Log.e("error", "This Language is not supported");
-//                            } else {
-//                                tts.speak(enWord, TextToSpeech.QUEUE_FLUSH, null);
-//                            }
-//                        } else
-//                            Log.e("error", "Initialization Failed!");
-//                    }
-//                });
-//            }
-//        });
+        btnSpeak = findViewById(R.id.btn_speak);
+
+        btnSpeak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tts = new TextToSpeech(ActivityEnToVn.this, new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int status) {
+                        // TODO Auto-generated method stub
+                        if (status == TextToSpeech.SUCCESS) {
+                            int result = tts.setLanguage(Locale.getDefault());
+                            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                                Log.e("error", "This Language is not supported");
+                            } else {
+                                tts.speak(word, TextToSpeech.QUEUE_FLUSH, null);
+                            }
+                        } else
+                            Log.e("error", "Initialization Failed!");
+                    }
+                });
+            }
+        });
     }
 }
