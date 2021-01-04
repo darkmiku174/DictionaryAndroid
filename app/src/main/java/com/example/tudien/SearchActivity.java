@@ -6,6 +6,8 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cursoradapter.widget.CursorAdapter;
 import androidx.cursoradapter.widget.SimpleCursorAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -16,6 +18,7 @@ import android.speech.RecognizerIntent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,20 +33,25 @@ public class SearchActivity extends AppCompatActivity {
     ImageButton btnSpeak;
     final int REQ_CODE_SPEECH_INPUT = 100;
     int db;
+    ArrayList<History> historyList;
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    RecyclerView.Adapter historyAdapter;
+    RelativeLayout emptyHistory;
+    Cursor cursorHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        btnSpeak = (ImageButton) findViewById(R.id.btn_speak);
+        btnSpeak = findViewById(R.id.btn_speak);
 
 
         btnSpeak.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(SearchActivity.this, "123", Toast.LENGTH_SHORT).show();
                 promptSpeechInput();
             }
         });
@@ -67,13 +75,13 @@ public class SearchActivity extends AppCompatActivity {
         String name;
         switch (db) {
             case 0:
-                name="en_word";
+                name = "en_word";
                 break;
             case 1:
-                name="word";
+                name = "word";
                 break;
             default:
-                name="word";
+                name = "word";
                 break;
         }
         final String[] from = new String[]{name};
@@ -229,6 +237,20 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        emptyHistory = findViewById(R.id.empty_history);
+        recyclerView = findViewById(R.id.recycler_view_history);
+        layoutManager = new LinearLayoutManager(SearchActivity.this);
+
+        recyclerView.setLayoutManager(layoutManager);
+        switch (db){
+            case 0:
+                fetch_historyEE();
+                break;
+            case 1:
+                break;
+        }
+
     }
 
     private void promptSpeechInput() {
@@ -257,7 +279,7 @@ public class SearchActivity extends AppCompatActivity {
 
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    search.setQuery(result.get(0),false);
+                    search.setQuery(result.get(0), false);
                 }
                 break;
             }
@@ -265,10 +287,36 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
+    private void fetch_historyEE() {
+        historyList = new ArrayList<>();
+        historyAdapter = new RecyclerViewAdapterHistory(this, historyList);
+        recyclerView.setAdapter(historyAdapter);
+
+        History h;
+        databaseHelper.openDB();
+        Toast.makeText(this, "123", Toast.LENGTH_SHORT).show();
+        cursorHistory = databaseHelper.getHistory();
+        if (cursorHistory.moveToFirst()) {
+            do {
+                h = new History(cursorHistory.getString(cursorHistory.getColumnIndex("word")), cursorHistory.getString(cursorHistory.getColumnIndex("en_definition")));
+                historyList.add(h);
+            }
+            while (cursorHistory.moveToNext());
+        }
+
+        historyAdapter.notifyDataSetChanged();
+
+        if (historyAdapter.getItemCount() == 0) {
+            emptyHistory.setVisibility(View.VISIBLE);
+        } else {
+            emptyHistory.setVisibility(View.GONE);
+        }
+        Toast.makeText(this, "oke", Toast.LENGTH_SHORT).show();
+    }
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-       // getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+    protected void onRestart() {
+        super.onRestart();
+        fetch_historyEE();
     }
 }

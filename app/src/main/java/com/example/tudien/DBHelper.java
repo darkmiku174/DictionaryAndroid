@@ -73,4 +73,21 @@ public class DBHelper {
         Cursor c = openDB().rawQuery("SELECT en_definition, example, synonyms, antonyms FROM words WHERE en_word==UPPER('" + text + "')", null);
         return c;
     }
+
+    public void inserHistory(String text){
+
+        openDB().execSQL("INSERT INTO history(word) VALUES (UPPER ('"+text+"'))");
+    }
+
+    public Cursor getHistory()
+    {
+        Cursor c= openDB().rawQuery("select distinct  word, en_definition from history h join words w on h.word==w.en_word order by h._id desc",null);
+        return c;
+    }
+
+
+    public void  deleteHistory()
+    {
+        openDB().execSQL("DELETE  FROM history");
+    }
 }

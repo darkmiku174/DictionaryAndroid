@@ -35,7 +35,7 @@ public class ActivityEnToVn extends AppCompatActivity {
 
     TextView textViewTu, textViewPhienAm, textViewNghia;
     String word;
-    ImageButton btnSpeak;
+    ImageButton btnSpeak, btnFav;
     DBHelper myDbHelper;
     Cursor c = null;
 
@@ -69,7 +69,9 @@ public class ActivityEnToVn extends AppCompatActivity {
         textViewTu.setText(word);
         textViewPhienAm.setText(pronounce);
         textViewNghia.setText(description);
+
         btnSpeak = findViewById(R.id.btn_speak);
+        btnFav=findViewById(R.id.btn_favorite);
 
         btnSpeak.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +91,13 @@ public class ActivityEnToVn extends AppCompatActivity {
                             Log.e("error", "Initialization Failed!");
                     }
                 });
+            }
+        });
+        btnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnFav.setImageResource(R.drawable.ic_star_check);
+                Toast.makeText(ActivityEnToVn.this, "Saved", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -25,7 +25,7 @@ import java.util.Locale;
 public class ActivityEnEn extends AppCompatActivity {
 
     TextView textViewTu, textViewNghia, textViewSynonyms, textViewAntonyms;
-    ImageButton btnSpeak;
+    ImageButton btnSpeak, btnFav;
     String word;
     DBHelper myDbHelper;
     Cursor c = null;
@@ -49,6 +49,7 @@ public class ActivityEnEn extends AppCompatActivity {
 
 
         c = myDbHelper.getMeaningEE(word);
+        myDbHelper.inserHistory(word);
 
         if (c.moveToFirst()) {
             definition = c.getString(c.getColumnIndex("en_definition"));
@@ -68,6 +69,7 @@ public class ActivityEnEn extends AppCompatActivity {
         textViewNghia.setText(definition);
 
         btnSpeak = findViewById(R.id.btn_speak);
+        btnFav=findViewById(R.id.btn_favorite);
 
         btnSpeak.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +89,14 @@ public class ActivityEnEn extends AppCompatActivity {
                             Log.e("error", "Initialization Failed!");
                     }
                 });
+            }
+        });
+
+        btnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnFav.setImageResource(R.drawable.ic_star_check);
+                Toast.makeText(ActivityEnEn.this, "Saved", Toast.LENGTH_SHORT).show();
             }
         });
     }

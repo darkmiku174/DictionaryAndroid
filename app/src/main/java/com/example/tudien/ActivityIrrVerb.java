@@ -105,6 +105,5 @@ public class ActivityIrrVerb extends AppCompatActivity {
         } catch (Exception e) {
             Log.e("tag", e.getMessage());
         }
-
     }
 }

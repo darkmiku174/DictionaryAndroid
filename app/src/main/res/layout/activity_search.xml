@@ -11,16 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!--<androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            app:titleTextColor="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/dark_red"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="Dictionary"/>-->
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,33 +19,65 @@
 
 
             <androidx.appcompat.widget.SearchView
-                android:backgroundTint="@color/white"
                 android:id="@+id/search_view"
-                android:layout_width="match_parent"
+                android:layout_width="329dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
                 android:background="@color/dark_blue"
+                android:backgroundTint="@color/white"
                 android:clickable="true"
                 android:focusable="true"
                 android:theme="@style/SearchTextViewTheme"
                 app:queryHint="@string/searchview_text_hint"
-                app:searchIcon="@drawable/ic_search"
-                >
+                app:searchIcon="@drawable/ic_search">
 
 
             </androidx.appcompat.widget.SearchView>
 
+            <ImageButton
+                android:layout_gravity="center"
+                android:id="@+id/btn_speak"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/ic_micro" />
+
         </LinearLayout>
-        <ImageButton
-            android:id="@+id/btn_speak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/empty_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="150dp"
+            android:visibility="visible">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Words you searched most\nrecently show up here..."
+                android:textAlignment="center"
+                android:textColor="#313131"
+                android:textSize="22sp"
+                />
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_history"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" />
+
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
