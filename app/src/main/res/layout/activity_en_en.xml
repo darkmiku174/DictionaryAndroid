@@ -115,7 +115,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toEndOf="@+id/btn_favorite"
-        app:srcCompat="@drawable/ic_star_black_normal" />
+        app:srcCompat="@drawable/ic_star_uncheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     <!--tạo layout cho sự kiến click các fragment (chức năng) trên drawer navigation-->
