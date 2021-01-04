@@ -50,14 +50,9 @@ public class ActivityIrrVerb extends AppCompatActivity {
 
         gridView.setAdapter(arrayAdapter);
         arrayAdapter.clear();
-        //readFromAsset();
         copyFile("IRR_VERB.txt");
         readFromInternal();
         arrayAdapter.notifyDataSetChanged();
-
-       /* gridView.setBackgroundColor(Color.WHITE);
-        gridView.setHorizontalSpacing(1);
-        gridView.setVerticalSpacing(1);*/
     }
 
     private void readFromInternal() {

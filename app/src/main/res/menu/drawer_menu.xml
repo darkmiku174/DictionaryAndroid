@@ -21,10 +21,6 @@
             android:icon="@drawable/en_vn"
             android:title="EN-VN" />
         <item
-            android:id="@+id/nav_VNtoEN"
-            android:icon="@drawable/vn_en"
-            android:title="VN-EN" />
-        <item
             android:id="@+id/nav_IrrVerb"
             android:icon="@drawable/irregular"
             android:title="Irregular Verbs" />

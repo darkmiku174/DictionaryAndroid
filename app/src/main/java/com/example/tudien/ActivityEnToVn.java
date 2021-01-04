@@ -11,6 +11,15 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Locale;
 
 public class ActivityEnToVn extends AppCompatActivity {
@@ -19,6 +28,7 @@ public class ActivityEnToVn extends AppCompatActivity {
     String word;
     ImageButton btnSpeak, btnFav;
     DBHelper myDbHelper;
+    String fileName;
     Cursor c = null;
 
     public String description;
@@ -33,7 +43,7 @@ public class ActivityEnToVn extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         word = bundle.getString("word");
 
-
+        fileName = "BOOKMARK.txt";
         myDbHelper = new DBHelper(this, 1);
         myDbHelper.openDB();
 
@@ -54,7 +64,7 @@ public class ActivityEnToVn extends AppCompatActivity {
         textViewNghia.setText(description);
 
         btnSpeak = findViewById(R.id.btn_speak);
-        btnFav=findViewById(R.id.btn_favorite);
+        btnFav = findViewById(R.id.btn_favorite);
 
         btnSpeak.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,8 +90,31 @@ public class ActivityEnToVn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 btnFav.setImageResource(R.drawable.ic_star_check);
-                Toast.makeText(ActivityEnToVn.this, "Saved", Toast.LENGTH_SHORT).show();
+                writeToBookmark();
             }
         });
     }
+
+    private void writeToBookmark() {
+        File file = new File(getFilesDir(), fileName);
+        try {
+            FileOutputStream fos = openFileOutput(fileName, MODE_APPEND);
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+            BufferedWriter writer = new BufferedWriter(osw);
+            writer.write(word + "/" + description + "\n");
+            writer.close();
+            osw.close();
+            fos.close();
+
+            Toast.makeText(ActivityEnToVn.this, "Saved", Toast.LENGTH_SHORT).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(ActivityEnToVn.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(ActivityEnToVn.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 }
