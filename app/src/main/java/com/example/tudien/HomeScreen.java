@@ -23,7 +23,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
     Intent intentHome;
     private DrawerLayout drawer;
     NavigationView navigationView;
-    Button EntoVn, VntoEn, IrrVerb, EntoEn, Bookmark, History;
+    Button EntoVn, IrrVerb, EntoEn, Bookmark, History;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +36,8 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);         //xem lại
+        NavigationView navigationView = findViewById(R.id.nav_view);
         EntoVn = findViewById(R.id.btn_en_vn);
-        VntoEn = findViewById(R.id.btn_vn_en);
         IrrVerb = findViewById(R.id.btn_irr_verb);
         EntoEn = findViewById(R.id.btn_en_en);
         Bookmark = findViewById(R.id.btn_bookmark);
@@ -72,21 +71,11 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             }
         });
 
-        VntoEn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeScreen.this, SearchActivity.class);
-                intent.putExtra("db", 2);
-                startActivity(intent);
-            }
-        });
-
         Bookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(HomeScreen.this, SearchActivity.class);
-//                intent.putExtra("db", 3);
-//                startActivity(intent);
+                Intent intent = new Intent(HomeScreen.this, ActivityFavWord.class);
+                startActivity(intent);
             }
         });
 
@@ -94,7 +83,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeScreen.this, ActivityIrrVerb.class);
-                intent.putExtra("db", 4);
                 startActivity(intent);
             }
         });
@@ -122,19 +110,12 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 intentHome.putExtra("db", 1);
                 this.startActivity(intentHome);
                 break;
-            case R.id.nav_VNtoEN:
-                intentHome = new Intent(this, SearchActivity.class);
-                intentHome.putExtra("db", 2);
-                this.startActivity(intentHome);
-                break;
             case R.id.nav_FavWord:
                 intentHome = new Intent(this, ActivityFavWord.class);
-                intentHome.putExtra("db", 3);
                 this.startActivity(intentHome);
                 break;
             case R.id.nav_IrrVerb:
                 intentHome = new Intent(this, ActivityIrrVerb.class);
-                intentHome.putExtra("db", 4);
                 this.startActivity(intentHome);
                 break;
         }
@@ -145,7 +126,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
     @Override
     public void onBackPressed() {
-        FragmentManager manager = getSupportFragmentManager();
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {

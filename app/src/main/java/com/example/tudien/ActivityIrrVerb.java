@@ -37,7 +37,7 @@ public class ActivityIrrVerb extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_irr_verbs);
-        gridView=findViewById(R.id.gv_irrverb);
+        gridView = findViewById(R.id.gv_irrverb);
         arrayList = new ArrayList<String>();
         arrayAdapter = new ArrayAdapter(ActivityIrrVerb.this,
                 android.R.layout.simple_list_item_1,
@@ -45,11 +45,12 @@ public class ActivityIrrVerb extends AppCompatActivity {
 
         gridView.setAdapter(arrayAdapter);
         arrayAdapter.clear();
-        readFromInternal();
+        readFromAsset();
         arrayAdapter.notifyDataSetChanged();
         gridView.setBackgroundColor(Color.WHITE);
     }
-    private void readFromInternal() {
+    
+    private void readFromAsset() {
         AssetManager am = this.getAssets();
         StringBuffer buf = new StringBuffer();
         try {
@@ -72,5 +73,4 @@ public class ActivityIrrVerb extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }

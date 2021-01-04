@@ -54,51 +54,6 @@ public class DBHelper {
         db.close();
     }
 
-    public ArrayList<DictEV> getDictEV() {
-        ArrayList<DictEV> arrayList = new ArrayList<>();
-        SQLiteDatabase db = openDB();
-        Cursor cursor = db.query("av",
-                null,
-                null,
-                null,
-                null,
-                null,
-                null);
-        while (cursor.moveToNext()) {
-            int id = cursor.getInt(0);
-            String word = cursor.getString(1);
-            String html = cursor.getString(2);
-            String description = cursor.getString(3);
-            String pronounce = cursor.getString(4);
-            arrayList.add(new DictEV(id, word, html, description, pronounce));
-        }
-        closeDB(db);
-        return arrayList;
-    }
-
-    public ArrayList<DictEE> getDictEE() {
-        ArrayList<DictEE> arrayList = new ArrayList<>();
-        SQLiteDatabase db = openDB();
-        Cursor cursor = db.query("entries",
-                null,
-                null,
-                null,
-                null,
-                null,
-                null);
-        while (cursor.moveToNext()) {
-            int id = cursor.getInt(0);
-            String word = cursor.getString(1);
-            String definition = cursor.getString(2);
-            String example = cursor.getString(3);
-            String synonyms = cursor.getString(4);
-            String antonyms = cursor.getString(5);
-            arrayList.add(new DictEE(id, word, definition, example, synonyms, antonyms));
-        }
-        closeDB(db);
-        return arrayList;
-    }
-
     public Cursor getSuggestionsEV(String text) {
         Cursor c = openDB().rawQuery("SELECT rowid _id, word FROM av WHERE word LIKE '" + text + "%' LIMIT 40", null);
         return c;

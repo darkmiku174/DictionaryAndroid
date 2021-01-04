@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 
 public class LoadingScreen extends AppCompatActivity {
 
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,8 @@ public class LoadingScreen extends AppCompatActivity {
                 finish();
             }
         }, 5000);
+        dbHelper = new DBHelper(this, 0);
+        dbHelper = new DBHelper(this, 1);
 
     }
 }
