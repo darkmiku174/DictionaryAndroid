@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-<!--Surfaceview tạo các view mà không ảnh hưởng đến container, sẽ dùng để trang trí thêm cho màng hình chính-->
+            <!--Surfaceview tạo các view mà không ảnh hưởng đến container, sẽ dùng để trang trí thêm cho màng hình chính-->
             <SurfaceView
                 android:id="@+id/surfaceView"
                 android:layout_width="match_parent"
@@ -58,9 +58,9 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_row="0"
+                        android:layout_row="1"
                         android:layout_rowWeight="1"
-                        android:layout_column="1"
+                        android:layout_column="0"
                         android:layout_columnWeight="1"
                         android:layout_margin="10dp"
                         android:foregroundGravity="fill"
@@ -94,7 +94,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_row="1"
+                        android:layout_row="0"
                         android:layout_rowWeight="1"
                         android:layout_column="0"
                         android:layout_columnWeight="1"
@@ -132,7 +132,7 @@
                         android:layout_height="wrap_content"
                         android:layout_row="0"
                         android:layout_rowWeight="1"
-                        android:layout_column="0"
+                        android:layout_column="1"
                         android:layout_columnWeight="1"
                         android:layout_margin="10dp"
                         android:foregroundGravity="fill"
@@ -259,13 +259,13 @@
                                 android:id="@+id/btn_history"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
-                                android:background="@drawable/sand_clock" />
+                                android:background="@drawable/exit" />
 
                             <TextView
                                 android:layout_marginTop="5dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Lịch sử"
+                                android:text="Thoát"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
                         </LinearLayout>

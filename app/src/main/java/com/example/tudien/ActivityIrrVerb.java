@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,6 +47,7 @@ public class ActivityIrrVerb extends AppCompatActivity {
         arrayAdapter.clear();
         readFromInternal();
         arrayAdapter.notifyDataSetChanged();
+        gridView.setBackgroundColor(Color.WHITE);
     }
     private void readFromInternal() {
         AssetManager am = this.getAssets();
@@ -70,4 +72,5 @@ public class ActivityIrrVerb extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
 }
